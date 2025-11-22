@@ -21,13 +21,13 @@ A simple **Tourism Booking Form** web application that allows users to book tour
 
 ```
 
-tourism-booking/
-├── frontend/
-│   └── index.html          # HTML booking form
-├── backend/
-│   └── server.js           # Backend API (Node.js / Express)
-├── docker-compose.yml      # Docker Compose configuration
-└── README.md               # Project documentation
+tourism-booking/  
+├── frontend/  
+│   └── index.html          # HTML booking form  
+├── backend/  
+│   └── server.js           # Backend API (Node.js / Express)  
+├── docker-compose.yml      # Docker Compose configuration  
+└── README.md               # Project documentation  
 
 ````
 
