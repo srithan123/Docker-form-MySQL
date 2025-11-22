@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+
+  mysql:
+    image: mysql:8.0.32
+    container_name: tourism-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: srithan    # root password
+      MYSQL_DATABASE: tourism         # initial database
+      # Optional: create a normal user
+      MYSQL_USER: tourism_user        # regular user (not root)
+      MYSQL_PASSWORD: userpass        # password for regular user
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend:
+    build: ./backend
+    container_name: tourism-backend
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      DB_HOST: mysql
+      DB_USER: root                   # connect as root
+      DB_PASSWORD: srithan
+      DB_NAME: tourism
+    depends_on:
+      - mysql
+
+  frontend:
+    build: ./frontend
+    container_name: tourism-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:
